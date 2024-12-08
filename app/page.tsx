@@ -1,10 +1,6 @@
-import { redirect } from 'next/navigation';
 import React from 'react';
 
-
-export async function Home() {
-redirect('/dashboard');
-  
+export function Home() {
   return (
     <div
       className="min-h-screen bg-cover bg-center"

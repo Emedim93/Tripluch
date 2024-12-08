@@ -1,0 +1,87 @@
+/* globals.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f9f9f9;
+  --foreground: #333333;
+  --primary-color: #4CAF50;  /* Green */
+  --secondary-color: #2196F3; /* Blue */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #181818;
+    --foreground: #e1e1e1;
+    --primary-color: #ff5722;
+    --secondary-color: #00bcd4;
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Arial', sans-serif;
+}
+
+h1, h2, h3 {
+  color: var(--foreground);
+}
+
+button {
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+}
+
+.bg-compost {
+  background-image: url('/triplush.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  background-color: white;
+}
+
+.card:hover {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-content {
+  padding-top: 10px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.link-button {
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.link-button:hover {
+  background-color: var(--secondary-color);
+}
+

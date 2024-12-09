@@ -1,8 +1,92 @@
-export default function ModifierInformations() {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
-        <h1 className="text-3xl font-bold mb-4">Modifier les informations</h1>
-        <p>Pour toutes modifications d'informations personelles, veuillez suivre les indications.</p>
-      </div>
+"use client";
+
+import { useState } from 'react';
+
+export default function ModifierInformationsPage() {
+  const [messages, setMessages] = useState([
+    { id: 1, content: 'Message 1', editable: false },
+    { id: 2, content: 'Message 2', editable: false },
+    { id: 3, content: 'Message 3', editable: false },
+  ]);
+
+  const handleEdit = (id: number) => {
+    setMessages((prevMessages) =>
+      prevMessages.map((msg) =>
+        msg.id === id ? { ...msg, editable: true } : msg
+      )
     );
-  }
+  };
+
+  const handleSave = (id: number, newContent: string) => {
+    setMessages((prevMessages) =>
+      prevMessages.map((msg) =>
+        msg.id === id ? { ...msg, content: newContent, editable: false } : msg
+      )
+    );
+  };
+
+  const handleCancel = (id: number) => {
+    setMessages((prevMessages) =>
+      prevMessages.map((msg) =>
+        msg.id === id ? { ...msg, editable: false } : msg
+      )
+    );
+  };
+
+  return (
+    <div className="p-6 bg-gray-100 min-h-screen">
+      <h1 className="text-2xl font-bold mb-4">Messagerie</h1>
+      <div className="bg-white shadow-md rounded-lg p-4">
+        {messages.map((msg) => (
+          <div
+            key={msg.id}
+            className="flex items-center justify-between border-b pb-2 mb-2"
+          >
+            {msg.editable ? (
+              <input
+                type="text"
+                className="border rounded-md p-2 flex-1"
+                defaultValue={msg.content}
+                onChange={(e) =>
+                  setMessages((prevMessages) =>
+                    prevMessages.map((m) =>
+                      m.id === msg.id ? { ...m, content: e.target.value } : m
+                    )
+                  )
+                }
+              />
+            ) : (
+              <span>{msg.content}</span>
+            )}
+
+            <div className="space-x-2">
+              {msg.editable ? (
+                <>
+                  <button
+                    onClick={() => handleSave(msg.id, msg.content)}
+                    className="px-4 py-1 text-white bg-green-500 rounded-md"
+                  >
+                    Save
+                  </button>
+                  <button
+                    onClick={() => handleCancel(msg.id)}
+                    className="px-4 py-1 text-white bg-gray-500 rounded-md"
+                  >
+                    Cancel
+                  </button>
+                </>
+              ) : (
+                <button
+                  onClick={() => handleEdit(msg.id)}
+                  className="px-4 py-1 text-white bg-blue-500 rounded-md"
+                >
+                  Edit
+                </button>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}

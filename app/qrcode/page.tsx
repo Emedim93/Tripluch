@@ -34,7 +34,12 @@ export default function QRCodePage() {
         onClick={downloadPDF}
         className="bg-green-500 text-white px-6 py-3 rounded hover:bg-green-600"
       >
-        Télécharger le QR Code en PDF
+        <link 
+          href="/qrcode"
+          className="bg-green-500 text-white px-6 py-3 rounded hover:bg-green-600"
+          >
+          Télécharger le QR Code en (PDF)
+          </link>
       </button>
     </div>
   );
